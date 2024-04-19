@@ -5,7 +5,7 @@ export default function Landing() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
             <Head>
-                <title>Course Rating App - Landing Page</title>
+                <title>Coarse Rating App - Landing Page</title>
             </Head>
             <h1 className="text-4xl font-bold mb-6">Welcome to Course Rating App</h1>
             <div className="space-y-4">
