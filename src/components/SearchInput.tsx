@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from "react";
 import searchIcon from '../../styles/search.png';
+import Image from 'next/image';
 
 interface iDefault {
     defaultValue: string | null,
@@ -27,7 +28,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
 
     return (
         <div className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-5 p-1 rounded-[15px]">
-            <img src={searchIcon}/>
+            <Image src={searchIcon} alt="Search Icon" />
             <input type="text"
                 id="inputId"
                 placeholder={placeholder}  // Utilize the placeholder prop
