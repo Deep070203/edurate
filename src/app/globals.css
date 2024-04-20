@@ -3,27 +3,34 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 255, 255, 255; /* light text */
-    --background-start-rgb: 25, 25, 30; /* dark grey */
-    --background-end-rgb: 50, 50, 55; /* slightly lighter dark grey */
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 30, 30, 30; /* Darkened background start color */
+    --background-end-rgb: 10, 10, 10; /* Darkened background end color */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 10, 10, 15;
-        --background-end-rgb: 25, 25, 30;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
     }
 }
 
 body {
     color: rgb(var(--foreground-rgb));
     background: linear-gradient( to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)) );
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 @layer utilities {
-    .text-balance {
-        text-wrap: balance;
+    .bg-dark {
+        background-color: rgb(var(--background-start-rgb));
+    }
+
+    .text-white {
+        color: rgb(var(--foreground-rgb));
+    }
+
+    .text-gray-400 {
+        color: rgba(255, 255, 255, 0.5);
     }
 }
