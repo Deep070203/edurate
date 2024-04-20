@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CollegeCritic",
+  title: "EduRate",
   description: "Get actual student reviews!",
 };
 

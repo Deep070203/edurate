@@ -1,74 +1,50 @@
-import { useRouter } from "next/navigation";
-import { useState, ChangeEvent } from "react";
+import { useRouter } from 'next/router';
+import { useState, ChangeEvent, useEffect } from 'react';
 
-interface iDefault {
-    defaultValue: string | null
+interface SearchInputProps {
+    defaultValue: string | null;
+    placeholder?: string;
 }
 
+export const SearchInput = ({ defaultValue, placeholder }: SearchInputProps) => {
+    const [inputValue, setInputValue] = useState<string | null>(defaultValue);
+    const [isReady, setIsReady] = useState(false);
+    const router = useRouter();
 
-export const SearchInput = ({ defaultValue }: iDefault) => {
-    // initiate the router from next/navigation
+    // Hook to set the readiness of the router
+    useEffect(() => {
+        if (router.isReady) {
+            setIsReady(true);
+        }
+    }, [router.isReady]);
 
-    const router = useRouter()
-
-    // We need to grab the current search parameters and use it as default value for the search input
-
-    const [inputValue, setValue] = useState(defaultValue)
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) =>{
-
-        const inputValue = event.target.value;
-
-        setValue(inputValue);
-
-    }
-
-
-
-    // If the user clicks enter on the keyboard, the input value should be submitted for search 
-
-    // We are now routing the search results to another page but still on the same page
-
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+    };
 
     const handleSearch = () => {
+        // Only execute the search if the router is ready
+        if (inputValue && isReady) {
+            router.push(`/?q=${inputValue}`);
+        }
+    };
 
-        if (inputValue) return router.push(`/?q=${inputValue}`);
-
-        if (!inputValue) return router.push("/")
-
-    }
-
-
-    const handleKeyPress = (event: { key: any; }) => {
-
-        if (event.key === "Enter") return handleSearch()
-
-    }
-
-
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
     return (
-
-        <div className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-5 p-1 rounded-[15px]">
-
-            <label htmlFor="inputId">searchIcon</label>
-
-
-            <input type="text"
-
-                id="inputId"
-
-                placeholder="Enter your keywords"
-
-                value={inputValue ?? ""} onChange={handleChange}
-
+        <div className="search__input border-2 border-solid border-slate-500 flex flex-row items-center gap-5 p-1 rounded-2xl">
+            <input
+                type="text"
+                placeholder={placeholder ?? 'Enter your keywords'}
+                value={inputValue ?? ''}
+                onChange={handleChange}
                 onKeyDown={handleKeyPress}
-
-                className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3" />
-
-
+                className="bg-transparent outline-none border-none w-full py-3 pl-2 pr-3"
+            />
         </div>
-
-    )
-
-}
+    );
+};

@@ -1,83 +1,44 @@
-'use client'
-// change this component to client component
+// Homepage.tsx
+
 import Link from 'next/link';
 import Head from 'next/head';
+import { useState, useEffect } from "react";
+import { SearchInput } from "@/components/SearchInput";
+import { data, Course } from "@/services/data";
 
-
-
-
-// import the data
-
-// import the searchBar
-
-// import the profile UI
-
-import { useState, useEffect } from "react"
-
-// import { ProfileCard } from "@/components/ProfileCard"
-
-import { SearchInput } from "@/components/SearchInput"
-
-import { data, Course } from "@/services/data"
-
+// This line should be right here, before your component definition
+export const config = { runtime: 'client' };
 
 const Home = () => {
+    const [courseData, setCourseData] = useState<Course[]>([]);
+    useEffect(() => {
+        setCourseData(data);
+    }, []);
 
-
-  // initialize useState for the data
-
-  const [courseData, setCourseData] = useState<Course[]>([])
-
-
-
-  useEffect(() => {
-
-    // will be updated soon
-
-     setCourseData(data)
-
-    },[])
-
-
-  // get total users
-
-  const totalUser = courseData.length;
-
-  return (
-
-   <div className="min-h-screen flex flex-col items-center justify-center bg-black-100">
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-black">
             <Head>
-                <title>Edurate</title>
+                <title>EduRate</title>
             </Head>
-            <h1 className="text-4xl font-bold mb-6">Welcome to Edurate</h1>
-  
-    <section className="h-[100vh] w-screen px-[2rem] md:px-[6rem] mt-[100px]">
-
-      
-
-      <SearchInput defaultValue={""} />
-
-      {/* // Conditionally render the profile cards */}
-
-      <div className="mt-8">
-
-        {totalUser === 0 ? <p>No result returned</p> : "Hello"
-
-          // return the profile cards here
-
-          
-
-  }
-
-
-      </div>
-
-    </section>
-   </div>
-
-  )
-
-
+            <h1 className="text-4xl font-bold mb-6 text-white">Welcome to EduRate!</h1>
+            <p className="text-xl mb-4 text-gray-300">Here you will get honest student reviews of all the courses.</p>
+            <div className="w-full max-w-md">
+                <SearchInput defaultValue="" placeholder="What's your University Name" />
+                <div className="mt-4 flex justify-between gap-2">
+                    <Link href="/login" passHref>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                            Login
+                        </button>
+                    </Link>
+                    <Link href="/signup" passHref>
+                        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">
+                            Sign Up
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default Home
+export default Home;
