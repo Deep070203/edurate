@@ -8,8 +8,11 @@ export default function UniversityPage() {
     async function fetchUniversities() {
       try {
         const response = await fetch('/api/school');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
-        setUniversities(data);
+        setUniversities(data); // Assuming data from API is an array of university names
       } catch (error) {
         console.error('Error fetching universities:', error);
       }
