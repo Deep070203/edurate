@@ -1,7 +1,9 @@
-// change this component to client component
-
-
 'use client'
+// change this component to client component
+import Link from 'next/link';
+import Head from 'next/head';
+
+
 
 
 // import the data
@@ -43,6 +45,12 @@ const Home = () => {
 
   return (
 
+   <div className="min-h-screen flex flex-col items-center justify-center bg-black-100">
+            <Head>
+                <title>Edurate</title>
+            </Head>
+            <h1 className="text-4xl font-bold mb-6">Welcome to Edurate</h1>
+  
     <section className="h-[100vh] w-screen px-[2rem] md:px-[6rem] mt-[100px]">
 
       
@@ -65,6 +73,7 @@ const Home = () => {
       </div>
 
     </section>
+   </div>
 
   )
 
