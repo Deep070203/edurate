@@ -1,6 +1,7 @@
+// pages/university/index.js
 import { useEffect, useState } from 'react';
 
-export default function IndexPage() {
+export default function UniversityPage() {
   const [universities, setUniversities] = useState([]);
 
   useEffect(() => {
