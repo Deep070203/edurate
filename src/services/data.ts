@@ -1,89 +1,31 @@
 export interface Course {
-  id: number;
-  name: string;
-  major: "Computer Science" | "Mathematics" | "Psychology";
-  rating: number;
+    id: number;
+    name: string;
+    major: "Computer Science" | "Mathematics" | "Psychology";
+    rating: number;
 }
-
 
 export const data: Course[] = [];
 
-// generate random names
-
-const RandomNames = [
-  "Alice",
-  "Bob",
-  "Charlie",
-  "David",
-  "Eve",
-  "Frank",
-  "Grace",
-  "Henry",
-  "Ivy",
-  "Jack",
-  "Kate",
-  "Liam",
-  "Mia",
-  "Noah",
-  "Olivia",
-  "Peter",
-  "Quinn",
-  "Rose",
-  "Sam",
-  "Tina",
-  "Uma",
-  "Victor",
-  "Wendy",
-  "Xander",
-  "Yara",
-  "Zane",
-  "Abigail",
-  "Benjamin",
-  "Chloe",
-  "Daniel",
-  "Emily",
-  "Fiona",
-  "George",
-  "Hannah",
-  "Isaac",
-  "Julia",
-  "Kevin",
-  "Lily",
-  "Mason",
-  "Nora",
-  "Oscar",
-  "Penelope",
-  "Quentin",
-  "Rachel",
-  "Simon",
-  "Tiffany",
-  "Ulysses",
-  "Violet",
-  "William",
-  "Xavier",
-  "Yasmine",
-  "Zoey",
-  "Stephen",
-  "Gerrard",
-  "Adewale",
+const courseTitles = [
+    "Intro to Programming", "Advanced Mathematics", "Psychology 101",
+    "Data Structures", "Calculus II", "Behavioral Psychology",
+    "Machine Learning", "Linear Algebra", "Cognitive Science",
+    "Operating Systems", "Statistics", "Experimental Psychology"
 ];
 
-// Generate 50 sample profiles
-for (let i = 1; i <= RandomNames.length; i++) {
-  if (RandomNames[i]) {
+// Generate sample courses
+for (let i = 0; i < courseTitles.length; i++) {
+    const major = i % 3 === 0 ? "Computer Science" :
+        i % 3 === 1 ? "Mathematics" :
+            "Psychology";
+
     const course: Course = {
-        id: i,
-      name: RandomNames[i],
-      major:
-        i % 3 === 0
-          ? "Computer Science"
-          : i % 2 === 0
-          ? "Mathematics"
-          : "Psychology",
-      rating: (i % 3) + 1 
+        id: i + 1,
+        name: `${courseTitles[i]}`,
+        major: major,
+        rating: Math.floor(Math.random() * 5) + 1  // Rating from 1 to 5
     };
+
     data.push(course);
-  } else {
-    console.error("Please wait...");
-  }
 }
