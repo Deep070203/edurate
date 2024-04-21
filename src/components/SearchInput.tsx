@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState, ChangeEvent } from "react";
-import { data, Course } from '../services/data.js'; // Make sure the import path is correct
+import { data, Course } from '../services/data'; // Make sure the import path is correct
 import searchIcon from '../../styles/search.png';
 import Image from 'next/image';
 
