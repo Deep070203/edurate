@@ -14,7 +14,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
     const [suggestions, setSuggestions] = useState<Course[]>([]);
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     const [isClient, setIsClient] = useState<boolean>(false);
-    const router = useRouter();
+    //const router = useRouter();
 
     useEffect(() => {
         setIsClient(true); // Set client-side flag after component mounts
@@ -39,7 +39,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
 
     const handleSearch = (courseId: number) => {
         if (isClient) { // Ensure router actions are client-side
-            router.push(`/?q=${courseId}`);
+            //router.push(`/?q=${courseId}`);
             setInputValue('');
             setShowSuggestions(false);
         }
@@ -62,9 +62,9 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
                 onKeyDown={handleKeyPress}
                 className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3" />
             {showSuggestions && (
-                <ul className="absolute z-10 w-full bg-white shadow-md max-h-60 overflow-auto">
+                <ul className="absolute z-10 w-full bg-gray-600 shadow-md max-h-60 overflow-auto">
                     {suggestions.map((suggestion) => (
-                        <li key={suggestion.id} onClick={() => handleSearch(suggestion.id)} className="p-2 hover:bg-gray-200 cursor-pointer">
+                        <li key={suggestion.id} onClick={() => handleSearch(suggestion.id)} className="p-2 hover:bg-black cursor-pointer">
                             {suggestion.name}
                         </li>
                     ))}
