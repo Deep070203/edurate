@@ -4,8 +4,8 @@
 
 :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 30, 30, 30; /* Darkened background start color */
-    --background-end-rgb: 10, 10, 10; /* Darkened background end color */
+    --background-start-rgb: 30, 30, 30; 
+    --background-end-rgb: 10, 10, 10; 
 }
 
 @media (prefers-color-scheme: dark) {

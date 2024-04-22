@@ -52,19 +52,24 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
     };
 
     return (
-        <div className="search__input relative border-[3px] border-solid border-slate-500 flex flex-col items-center gap-5 p-1 rounded-[15px]">
-            <Image src={searchIcon} alt="Search Icon" width={24} height={24} />
+        <div className="search__input relative border-[3px] border-solid border-slate-700 flex items-center gap-4 p-4 rounded-[20px]" style={{ minWidth: '500px' }}>
+            <div style={{ flexShrink: 0 }}>
+                <Image src={searchIcon} alt="Search Icon" width={24} height={24} />
+            </div>
             <input type="text"
                 id="inputId"
                 placeholder={placeholder}
                 value={inputValue}
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
-                className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3" />
+                className="bg-gray-800 rounded-[15px] outline-none border-none w-full py-2 pl-10 pr-3 text-lg" // Adjust padding and font size as needed
+                style={{ flexGrow: 1 }}
+            />
             {showSuggestions && (
-                <ul className="absolute z-10 w-full bg-gray-600 shadow-md max-h-60 overflow-auto">
-                    {suggestions.map((suggestion) => (
-                        <li key={suggestion.id} onClick={() => handleSearch(suggestion.id)} className="p-2 hover:bg-black cursor-pointer">
+                <ul className="absolute z-10 w-100% bg-gray-600 shadow-md overflow-auto rounded-[12px]"
+                    style={{ top: '95%' }}> 
+                    {suggestions.slice(0, 6).map((suggestion) => (
+                        <li key={suggestion.id} onClick={() => handleSearch(suggestion.id)} className="p-2 hover:bg-gray-800 cursor-pointer">
                             {suggestion.name}
                         </li>
                     ))}
