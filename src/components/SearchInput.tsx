@@ -62,7 +62,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
                 value={inputValue}
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
-                className="bg-gray-800 rounded-[15px] outline-none border-none w-full py-2 pl-10 pr-3 text-lg" // Adjust padding and font size as needed
+                className="bg-gray-800 rounded-[15px] outline-none border-none w-full py-2 pl-10 pr-3 text-lg" 
                 style={{ flexGrow: 1 }}
             />
             {showSuggestions && (
