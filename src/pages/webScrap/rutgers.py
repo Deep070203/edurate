@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def web_content_div(web_content, class_path, value):
+    count = 0
     web_content_div = web_content.find_all('div', {'class': class_path})
     textslist = []
     try:
@@ -24,20 +25,23 @@ def web_content_div(web_content, class_path, value):
 
 def college_courses():
     Error = 0
-    url = 'https://www.collegetransfer.net/Search/Search-for-Courses/Course-Search-Results?instnm=Rutgers+University-New+Brunswick&distance=5&language=en-US&perpage=50'
+    for i in range(1, 20):
+        iS = str(i)
+        url = f'https://www.collegetransfer.net/Search/Search-for-Courses/Course-Search-Results?instnm=Rutgers+University-New+Brunswick&distance=5&language=en-US&perpage=50&page={iS}'
 
-    try:
-        r = requests.get(url)
-        web_content = BeautifulSoup(r.text, 'lxml')
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
 
-        # Price and Price Changes
-        texts = web_content_div(web_content, 'course-search-course-title', 'h3')
-        for i in range(len(texts)):
-            texts[i] = texts[i][0].rstrip()
-            texts[i] = texts[i][13:]
-        print(texts)
-    except ConnectionError:
-        print("Connection Error")
+            # Price and Price Changes
+            texts = web_content_div(web_content, 'course-search-course-title', 'h3')
+            for i in range(len(texts)):
+                texts[i] = texts[i][0].rstrip()
+                texts[i] = texts[i][13:]
+            print(texts)
+        except ConnectionError:
+            print("Connection Error")
+        
 
 
 college_courses()
