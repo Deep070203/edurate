@@ -34,7 +34,6 @@ def college_courses():
             r = requests.get(url)
             web_content = BeautifulSoup(r.text, 'lxml')
 
-            # Price and Price Changes
             texts = web_content_div(web_content, 'tp-results__inst-name', 'strong')
             for text in texts:
                 university_names.append(text[0].rstrip()[1:])
