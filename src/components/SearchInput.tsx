@@ -67,7 +67,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
             />
             {showSuggestions && (
                 <ul className="absolute z-10 w-100% bg-gray-600 shadow-md overflow-auto rounded-[12px]"
-                    style={{ top: '95%' }}> 
+                    style={{ top: '95%', left:'11%' }}> 
                     {suggestions.slice(0, 6).map((suggestion) => (
                         <li key={suggestion.id} onClick={() => handleSearch(suggestion.id)} className="p-2 hover:bg-gray-800 cursor-pointer">
                             {suggestion.name}
