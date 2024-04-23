@@ -1,28 +1,54 @@
 import requests
+from requests.exceptions import ConnectionError
 from bs4 import BeautifulSoup
-import csv
 
-def scrape_university_names():
-    url = "https://doors.stanford.edu/~sr/universities.html"
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, "html.parser")
 
-    # Find the container with university names
-    container = soup.find("div", class_="lead")
+def web_content_div(web_content, class_path, value):
+    count = 0
+    web_content_div = web_content.find_all('div', {'class': class_path})
+    textslist = []
+    try:
+        if value != 'None':
+            for i in range(50):
+                spans = web_content_div[i].find_all(value)
+                texts = [span.get_text() for span in spans]
+                textslist.append(texts)
+        else:
+            text = web_content_div[0].get_text("|", strip=True)
+            text = text.split("|")
+            texts = text[-1]
+    except IndexError:
+        texts = []
 
-    # Extract university names
-    university_names = [a.text.strip() for a in container.find_all("a")]
+    return textslist
 
-    return university_names
 
-def write_to_csv(data, filename):
-    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["University Name"])
-        for university_name in data:
-            writer.writerow([university_name])
+def college_courses():
+    Error = 0
+    university_names = [] 
+    for i in range(1, 44):
+        iS = str(i)
+        url = f'https://www.collegetransfer.net/Search/Search-for-Transfer-Profiles/Transfer-Profile-Search-Results?sort=alpha&dir=up&language=en-US&perpage=50&page={iS}'
 
-if __name__ == "__main__":
-    university_names = scrape_university_names()
-    write_to_csv(university_names, "university_names.csv")
-    print("University names scraped and saved to university_names.csv")
+        try:
+            r = requests.get(url)
+            web_content = BeautifulSoup(r.text, 'lxml')
+
+            # Price and Price Changes
+            texts = web_content_div(web_content, 'tp-results__inst-name', 'strong')
+            for text in texts:
+                university_names.append(text[0].rstrip()[1:])
+                print(text)
+            # 'cal College', 'State University'
+            
+            
+        except ConnectionError:
+            print("Connection Error")
+            
+    with open("university_names1.txt", "w", encoding="utf-8") as file:
+        for name in university_names:
+            file.write(name)
+        
+
+
+college_courses()
