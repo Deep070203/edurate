@@ -45,7 +45,7 @@ def college_courses():
         except ConnectionError:
             print("Connection Error")
             
-    with open("university_names1.txt", "w", encoding="utf-8") as file:
+    with open("university_names.txt", "w", encoding="utf-8") as file:
         for name in university_names:
             file.write(name)
         
