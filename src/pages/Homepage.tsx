@@ -22,7 +22,7 @@ const Home = () => {
             <p className="text-lg text-gray-400 mb-6">Here you will get honest student reviews of all the courses.</p>
             <SearchInput placeholder="What university do you go to?" defaultValue={""} />
             <div className="flex space-x-4 mt-4">
-                <Link href="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</Link>
+                <Link href="../Login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</Link>
                 <Link href="/signup" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Sign Up</Link>
             </div>
             
