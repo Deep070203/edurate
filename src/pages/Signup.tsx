@@ -63,7 +63,7 @@ const Signup = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-dark text-white">
             <Head>
-                <title>Signup - Edurate</title>
+                <title>Signup | Edurate</title>
             </Head>
             <div className="w-full max-w-lg p-8">
                 <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
