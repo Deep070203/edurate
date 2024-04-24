@@ -10,15 +10,26 @@ const Signup = () => {
         password: '',
         universityName: '',
         yearOfCollege: '',
-        courses: '',
-        courseCode: '',
-        professor: '',
-        rateCourse: '',
+        courses: [
+            { courseName: '', courseCode: '', professor: '', rateCourse: '' }
+        ],
     });
 
-    const handleChange = (e) => {
+    const addCourse = () => {
+        const newCourse = { courseName: '', courseCode: '', professor: '', rateCourse: '' };
+        setUserData({ ...userData, courses: [...userData.courses, newCourse] });
+    };
+
+    const handleChange = (e, index) => {
         const { name, value } = e.target;
-        setUserData({ ...userData, [name]: value });
+        if (name.startsWith("courses")) {
+            const fieldName = name.split(".")[1]; // e.g., courses.courseName
+            const newCourses = [...userData.courses];
+            newCourses[index][fieldName] = value;
+            setUserData({ ...userData, courses: newCourses });
+        } else {
+            setUserData({ ...userData, [name]: value });
+        }
     };
 
     const handleNextStep = (e) => {
@@ -42,7 +53,6 @@ const Signup = () => {
 
     const renderStep = () => {
         switch (step) {
-            // Other steps remain the same, showing changes to the input style
             case 1:
                 return (
                     <input
@@ -56,7 +66,117 @@ const Signup = () => {
                         autoFocus
                     />
                 );
-            // Repeat for other cases...
+            case 2:
+                return (
+                    <input
+                        type="email"
+                        name="email"
+                        value={userData.email}
+                        onChange={handleChange}
+                        placeholder="Email ID"
+                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        required
+                    />
+                );
+            case 3:
+                return (
+                    <input
+                        type="password"
+                        name="password"
+                        value={userData.password}
+                        onChange={handleChange}
+                        placeholder="Password"
+                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        required
+                    />
+                );
+            case 4:
+                return (
+                    <input
+                        type="text"
+                        name="universityName"
+                        value={userData.universityName}
+                        onChange={handleChange}
+                        placeholder="University Name"
+                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        required
+                    />
+                );
+            case 5:
+                const yearOptions = [1, 2, 3, 4, 5, 6].map(year => {
+                    let suffix = 'th';
+                    if (year === 1) suffix = 'st';
+                    else if (year === 2) suffix = 'nd';
+                    else if (year === 3) suffix = 'rd';
+
+                    return (
+                        <option key={year} value={`${year}`}>
+                            {year}{suffix} Year
+                        </option>
+                    );
+                });
+
+                return (
+                    <select
+                        name="yearOfCollege"
+                        value={userData.yearOfCollege}
+                        onChange={handleChange}
+                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        required
+                    >
+                        <option value="">Select Year of College</option>
+                        {yearOptions}
+                    </select>
+                );
+            case 6:
+                return (
+                    <>
+                        {userData.courses.map((course, index) => (
+                            <div key={index} className="mb-4">
+                                <input
+                                    type="text"
+                                    name={`courses.courseName`}
+                                    value={course.courseName}
+                                    onChange={(e) => handleChange(e, index)}
+                                    placeholder={`Course ${index + 1} Name`}
+                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name={`courses.courseCode`}
+                                    value={course.courseCode}
+                                    onChange={(e) => handleChange(e, index)}
+                                    placeholder={`Course ${index + 1} Code`}
+                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name={`courses.professor`}
+                                    value={course.professor}
+                                    onChange={(e) => handleChange(e, index)}
+                                    placeholder={`Course ${index + 1} Professor`}
+                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    name={`courses.rateCourse`}
+                                    value={course.rateCourse}
+                                    onChange={(e) => handleChange(e, index)}
+                                    placeholder={`Rate Course ${index + 1} (1-5)`}
+                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                />
+                            </div>
+                        ))}
+                        <button type="button" onClick={addCourse} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
+                            Add Another Course
+                        </button>
+                    </>
+                );
+            
         }
     };
 
