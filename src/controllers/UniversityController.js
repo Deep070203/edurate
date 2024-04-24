@@ -7,13 +7,22 @@ export async function addUniversityData() {
     const db = await dbConnect();
 
     // Sample data
-    const universityData = {
-      name: 'University of Example',
+    const universityData = [
+     {
+      name: 'Rutgers University',
       courses: [
-        { name: 'Course A', ratings: { difficulty: 4.5, work: 3.8, interest: 4.2 }, reviews: [{ user: 'User1', comment: 'Great course!' }] },
-        { name: 'Course B', ratings: { difficulty: 3.9, work: 4.1, interest: 4.5 }, reviews: [{ user: 'User2', comment: 'Good content!' }] },
+        { name: 'Intro to Computer Science', ratings: { difficulty: 4.5, work: 3.8, interest: 4.2 }, reviews: [{ user: 'User1', comment: 'Great course!' }] },
+        { name: 'Intro to Data Science', ratings: { difficulty: 3.9, work: 4.1, interest: 4.5 }, reviews: [{ user: 'User2', comment: 'Good content!' }] },
       ],
-    };
+    },
+    {
+      name: 'New Jersey Institute of Technology',
+      courses: [
+        { name: 'Intro to Computer Science', ratings: { difficulty: 4.5, work: 3.8, interest: 4.2 }, reviews: [{ user: 'User1', comment: 'Great course!' }] },
+        { name: 'Intro to Data Science', ratings: { difficulty: 3.9, work: 4.1, interest: 4.5 }, reviews: [{ user: 'User2', comment: 'Good content!' }] },
+      ],
+    },
+    ];
 
     const result = await University.create(universityData);
     console.log('University data added:', result);
