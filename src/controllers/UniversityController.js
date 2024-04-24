@@ -1,6 +1,6 @@
 // controllers/UniversityController.js
-import University from '../models/university';
-import { dbConnect } from '../utils/dbConnect';
+import University from '../models/university.js';
+import { dbConnect } from '../../utils/dbConnect.js';
 
 export async function addUniversityData() {
   try {
