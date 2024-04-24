@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
-const connection = {};
+let cachedConnection = null;
 
-async function dbConnect() {
-  if (connection.isConnected) {
-    return;
+export async function dbConnect() {
+  if (cachedConnection) {
+    return cachedConnection;
   }
 
   try {
@@ -12,11 +12,11 @@ async function dbConnect() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    connection.isConnected = db.connections[0].readyState;
     console.log('Connected to MongoDB');
+    cachedConnection = db;
+    return db;
   } catch (error) {
     console.error('MongoDB connection error:', error);
+    throw new Error('MongoDB connection error');
   }
 }
-
-export default dbConnect;
