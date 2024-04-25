@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Signup = () => {
     const [step, setStep] = useState(1);
@@ -46,7 +47,7 @@ const Signup = () => {
         e.preventDefault();
         // Handle the final submit, probably send data to backend server
         // Hashing should be done on the server side
-        console.log(userData);
+        // console.log(userData);
         // Assuming you have some routing after submission
         // router.push('/dashboard');
     };
@@ -159,16 +160,15 @@ const Signup = () => {
                                     placeholder={`Course ${index + 1} Professor`}
                                     className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     required
+                                    //type="number"
+                                    //name={`courses.rateCourse`}
+                                    //value={course.rateCourse}
+                                    //onChange={(e) => handleChange(e, index)}
+                                    //placeholder={`Rate Course ${index + 1} (1-5)`}
+                                    //className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    //required
                                 />
-                                <input
-                                    type="number"
-                                    name={`courses.rateCourse`}
-                                    value={course.rateCourse}
-                                    onChange={(e) => handleChange(e, index)}
-                                    placeholder={`Rate Course ${index + 1} (1-5)`}
-                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    required
-                                />
+                                
                             </div>
                         ))}
                         <button type="button" onClick={addCourse} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
@@ -186,7 +186,7 @@ const Signup = () => {
                 <title>Signup | Edurate</title>
             </Head>
             <div className="w-full max-w-lg p-8">
-                <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form onSubmit={handleSubmit} className="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">{renderStep()}</div>
                     <div className="flex space-x-4 mt-4 justify-between">
                         {step > 1 && (
@@ -194,15 +194,17 @@ const Signup = () => {
                                 Back
                             </button>
                         )}
-                        {step < 9 && (
+                        {step < 6 && (
                             <button onClick={handleNextStep} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
                                 Next
                             </button>
                         )}
-                        {step === 9 && (
-                            <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
-                                Submit
-                            </button>
+                        {step === 6 && (
+                            <Link href="../Login" passHref>
+                                <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
+                                    Submit
+                                </button>
+                            </Link>
                         )}
                     </div>
                 </form>
