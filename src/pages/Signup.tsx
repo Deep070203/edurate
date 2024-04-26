@@ -200,7 +200,7 @@ const Signup = () => {
                             </button>
                         )}
                         {step === 6 && (
-                            <Link href="../Login" passHref>
+                            <Link href="../Review" passHref>
                                 <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
                                     Submit
                                 </button>
