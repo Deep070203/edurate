@@ -1,17 +1,10 @@
-// models/University.js
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const universitySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  courses: [{
-    name: { type: String, required: true },
-    ratings: {
-      difficulty: { type: Number, required: true },
-      work: { type: Number, required: true },
-      interest: { type: Number, required: true },
-    },
-    reviews: [{ user: String, comment: String }],
-  }],
+  university_name: String,
+  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
 });
 
-export default mongoose.models.University || mongoose.model('University', universitySchema);
+const University = mongoose.model('University', universitySchema);
+
+module.exports = University;
