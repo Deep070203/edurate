@@ -66,7 +66,7 @@ def fetch_courses_for_university(university_name):
     return courses
 
 def main():
-    with open("/Users/vraj/projects/edurate/src/pages/webScrap/university_names.txt", "r", encoding="utf-8") as file:
+    with open("/Users/vraj/projects/edurate/src/pages/webScrap/namesTemp.txt", "r", encoding="utf-8") as file:
         university_names = [line.strip() for line in file]
 
     university_courses = {}
