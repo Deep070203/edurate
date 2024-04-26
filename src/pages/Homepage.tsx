@@ -21,7 +21,7 @@ const Home = () => {
 
             {/* Header Section */}
             <header className="w-full bg-gray-800 py-4 px-8 flex justify-between items-center">
-                <h1 className="text-xl font-bold text-white">Edurate</h1>
+                <h1 className="text-xl font-bold text-white">EduRate</h1>
                 <div className="flex-grow flex justify-center">
                     <SearchInput placeholder="What university do you go to?" defaultValue={""} />
                 </div>
