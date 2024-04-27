@@ -36,6 +36,7 @@ const Home = () => {
             </header>
 
             {/* Main Content */}
+            <h1 className="text-4xl font-bold mt-12 mb-4 text-black">Welcome to Edurate!</h1> 
             <div className="flex flex-grow w-full">
                 <div className="flex-[6.5] flex items-center justify-center overflow-x-auto">
                     <div className="min-w-[850px]">
