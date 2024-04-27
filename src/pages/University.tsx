@@ -20,6 +20,7 @@ const University = () => {
                 <div className="flex-grow flex justify-center"> 
                     <SearchInput placeholder="Lookup Course Number or Name" defaultValue={""} /> {/* change this search input backend*/}
                 </div>
+                <Link href="../addUniversity" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Add University</Link>
                 <Link href="../Homepage" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Log Out</Link>
             </header>
 

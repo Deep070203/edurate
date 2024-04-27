@@ -8,3 +8,11 @@ export async function POST(request){
     await University.create({ university_name, courses });
     return NextResponse.json( {message: "University Created"}, {status: 201} );
 }
+
+export async function GET(request, { params }){
+    const { university_name } = params;
+    
+    await dbConnect();
+    const university = await University.find({ university_name: university_name });
+    return NextResponse.json({ university }, { status: 200 });
+}
