@@ -1,3 +1,4 @@
+import React from 'react';
 import '../public/styles/globals.css'; // Adjust the path to the location of your globals.css file
 import type { AppProps } from 'next/app'
  

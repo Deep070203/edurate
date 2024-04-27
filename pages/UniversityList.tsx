@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
 
 const getUniversities = async () => {

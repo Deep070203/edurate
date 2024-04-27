@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { SearchInput } from "../components/SearchInput";
+import React from 'react';
 
 const Signup = () => {
     const [step, setStep] = useState(1);
