@@ -1,84 +1,40 @@
-// Import necessary modules
-import React, { useState, useEffect } from 'react';
+'use client'
+import Link from 'next/link';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from "react";
 import { SearchInput } from "@/components/SearchInput";
-import axios from 'axios';
 
-// Courses component
-const Courses = () => {
-    // Use the router to access the query parameters
-    const router = useRouter();
-    const { university } = router.query;
 
-    // State for university details and courses
-    const [universityDetails, setUniversityDetails] = useState({
-        overallRating: 0,
-        topCourses: [],
-        recommendedCourses: []
-    });
-    const [courses, setCourses] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
+const Course = () => {
 
-    // Fetch data from the API
-    useEffect(() => {
-        if (university) {
-            // Fetch university details
-            axios.get(`/api/universities/${university}`).then(response => {
-                setUniversityDetails(response.data);
-            }).catch(error => console.error('Failed to fetch university details', error));
-
-            // Fetch courses
-            axios.get(`/api/universities/${university}/courses`).then(response => {
-                setCourses(response.data);
-            }).catch(error => console.error('Failed to fetch courses', error));
-        }
-    }, [university]);
-
-    // Search courses
-    const handleSearch = () => {
-        axios.get(`/api/search/${university}?query=${searchQuery}`).then(response => {
-            setCourses(response.data);
-        }).catch(error => console.error('Failed to search courses', error));
-    };
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#e5e5e5]">
             <Head>
-                <title>{university} Courses</title>
+                <title>Edurate - University</title>
             </Head>
-            <h1 className="text-3xl font-bold text-center mt-6">{university} Courses</h1>
-            <div className="m-4 p-4 bg-white shadow rounded">
-                <h2 className="text-2xl font-bold">Overall University Rating: {universityDetails.overallRating}</h2>
-                <div className="mt-4">
-                    <h3 className="text-xl font-semibold">Top Rated Courses</h3>
-                    <ul>
-                        {universityDetails.topCourses.map(course => (
-                            <li key={course.id}>{course.name} - Rating: {course.rating}</li>
-                        ))}
-                    </ul>
+
+            {/* Header Section */}
+            <header className="w-full bg-[#14213d] py-4 px-8 flex justify-between items-center">
+                <h1 className="text-xl font-bold text-white">EduRate</h1>
+                <div className="flex-grow flex justify-center">
+                    <SearchInput placeholder="Lookup Course Number or Name" defaultValue={""} /> {/* change this search input backend*/}
                 </div>
-                <div className="mt-4">
-                    <h3 className="text-xl font-semibold">Recommended Courses</h3>
-                    <ul>
-                        {universityDetails.recommendedCourses.map(course => (
-                            <li key={course.id}>
-                                {course.name} - Review: {course.sampleReview}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className="mt-4">
-                    <SearchInput
-                        placeholder="Search for courses..."
-                        defaultValue={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onSearch={handleSearch}
-                    />
-                </div>
-            </div>
+                <Link href="../Homepage" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Log Out</Link>
+            </header>
+
+            {/* Main Content */}
+            <main className="flex-grow w-full flex">
+                    
+            </main>
+
+            {/* Footer Section */}
+            <footer className="w-full bg-[#14213d] py-4 px-8 text-center text-white">
+                <p> 2024 Edurate. All rights reserved. </p>
+            </footer>
+
         </div>
     );
 }
 
-export default Courses;
+export default Course;
