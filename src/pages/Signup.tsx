@@ -202,9 +202,8 @@ const Signup = () => {
                                     <button onClick={handlePreviousStep} className="bg-gray-500 hover:bg-gray-600 text-black font-bold py-2 px-4 rounded">
                                         Back
                                     </button>
-                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
-                                        Submit
-                                    </button>
+                                    <Link href="../University" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">Submit</Link>
+                                    
                                 </>
                             )}
                         </div>

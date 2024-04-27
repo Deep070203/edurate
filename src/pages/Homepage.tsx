@@ -82,7 +82,7 @@ const Home = () => {
                                     required
                                 />
                             </div>
-                            <Link href="" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Login</Link>
+                            <Link href="../University" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Login</Link>
                             <Link href="../Signup" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 ml-4 rounded">Sign Up</Link>
                         </form>
                     </div>
