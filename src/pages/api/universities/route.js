@@ -9,10 +9,8 @@ export async function POST(request){
     return NextResponse.json( {message: "University Created"}, {status: 201} );
 }
 
-export async function GET(request, { params }){
-    const { university_name } = params;
-    
+export async function GET(){
     await dbConnect();
-    const university = await University.find({ university_name: university_name });
-    return NextResponse.json({ university }, { status: 200 });
+    const university = await University.find();
+    return NextResponse.json({ university });
 }
