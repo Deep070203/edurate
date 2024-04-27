@@ -48,14 +48,38 @@ const University = () => {
                     </div>
                     {/* Placeholder for course cards, repeat for each course */}
                     <div className="mb-4 bg-white p-4 rounded shadow-lg">
-                        <h3 className="text-lg font-bold text-black">Course Name 101</h3>
-                        <p>Course description or additional details can go here.</p>
-                        {/* Placeholder for actual course rating component */}
-                        <div className="text-right text-l text-black">
-                            4.5/5
-                        </div>
+                        <Link href="../Course" passHref>
+                            <h3 className="text-lg font-bold text-black">Course Name 101</h3>
+                            <p className="text-lg text-black">Course Code</p>
+                            {/* Placeholder for actual course rating component */}
+                            <div className="text-right text-l text-black">
+                                4.5/5
+                            </div>
+                        </Link>
                     </div>
-                    {/* Repeat above div for each popular course */}
+                    <div className="mb-4 bg-white p-4 rounded shadow-lg">
+                        <Link href="../Course" passHref>
+                            <h3 className="text-lg font-bold text-black">Course Name 101</h3>
+                            <p className="text-lg text-black">Course Code</p>
+                            {/* Placeholder for actual course rating component */}
+                            <div className="text-right text-l text-black">
+                                4.5/5
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="mb-4 bg-white p-4 rounded shadow-lg">
+                        <Link href="../Course" passHref>
+                            <h3 className="text-lg font-bold text-black">Course Name 101</h3>
+                            <p className="text-lg text-black">Course Code</p>
+                            {/* Placeholder for actual course rating component */}
+                            <div className="text-right text-l text-black">
+                                4.5/5
+                            </div>
+                        </Link>
+                    </div>
+
+                    
+                    
                 </section>
             </main>
 
