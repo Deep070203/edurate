@@ -33,6 +33,7 @@ const Home = () => {
                 <div className="flex-grow flex justify-center">
                     <SearchInput placeholder="What university do you go to?" defaultValue={""} />
                 </div>
+                <Link href="" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Contact Us</Link>
             </header>
 
             {/* Main Content */}
