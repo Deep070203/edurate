@@ -7,4 +7,4 @@ const universitySchema = new mongoose.Schema({
 
 const University = mongoose.model('University', universitySchema);
 
-module.exports = University;
+export default University;
