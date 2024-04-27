@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { SearchInput } from "@/components/SearchInput";
 
 const Signup = () => {
     const [step, setStep] = useState(1);
@@ -35,180 +36,191 @@ const Signup = () => {
 
     const handleNextStep = (e) => {
         e.preventDefault();
-        setStep((prevStep) => prevStep + 1);
+        if (step < 6) {
+            setStep((prevStep) => prevStep + 1);
+        }
     };
 
-    const handlePreviousStep = (e) => {
-        e.preventDefault();
+    const handlePreviousStep = () => {
+        if (step === 6) {
+            // Additional logic if needed for when leaving step 6
+        }
         setStep((prevStep) => prevStep - 1);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle the final submit, probably send data to backend server
-        // Hashing should be done on the server side
-        // console.log(userData);
-        // Assuming you have some routing after submission
-        // router.push('/dashboard');
-    };
-
-    const renderStep = () => {
-        switch (step) {
-            case 1:
-                return (
-                    <input
-                        type="text"
-                        name="fullName"
-                        value={userData.fullName}
-                        onChange={handleChange}
-                        placeholder="Full Name"
-                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                        required
-                        autoFocus
-                    />
-                );
-            case 2:
-                return (
-                    <input
-                        type="email"
-                        name="email"
-                        value={userData.email}
-                        onChange={handleChange}
-                        placeholder="Email ID"
-                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                        required
-                    />
-                );
-            case 3:
-                return (
-                    <input
-                        type="password"
-                        name="password"
-                        value={userData.password}
-                        onChange={handleChange}
-                        placeholder="Password"
-                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                        required
-                    />
-                );
-            case 4:
-                return (
-                    <input
-                        type="text"
-                        name="universityName"
-                        value={userData.universityName}
-                        onChange={handleChange}
-                        placeholder="University Name"
-                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                        required
-                    />
-                );
-            case 5:
-                const yearOptions = [1, 2, 3, 4, 5, 6].map(year => {
-                    let suffix = 'th';
-                    if (year === 1) suffix = 'st';
-                    else if (year === 2) suffix = 'nd';
-                    else if (year === 3) suffix = 'rd';
-
-                    return (
-                        <option key={year} value={`${year}`}>
-                            {year}{suffix} Year
-                        </option>
-                    );
-                });
-
-                return (
-                    <select
-                        name="yearOfCollege"
-                        value={userData.yearOfCollege}
-                        onChange={handleChange}
-                        className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                        required
-                    >
-                        <option value="">Select Year of College</option>
-                        {yearOptions}
-                    </select>
-                );
-            case 6:
-                return (
-                    <>
-                        {userData.courses.map((course, index) => (
-                            <div key={index} className="mb-4">
-                                <input
-                                    type="text"
-                                    name={`courses.courseName`}
-                                    value={course.courseName}
-                                    onChange={(e) => handleChange(e, index)}
-                                    placeholder={`Course ${index + 1} Name`}
-                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    required
-                                />
-                                <input
-                                    type="text"
-                                    name={`courses.courseCode`}
-                                    value={course.courseCode}
-                                    onChange={(e) => handleChange(e, index)}
-                                    placeholder={`Course ${index + 1} Code`}
-                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    required
-                                />
-                                <input
-                                    type="text"
-                                    name={`courses.professor`}
-                                    value={course.professor}
-                                    onChange={(e) => handleChange(e, index)}
-                                    placeholder={`Course ${index + 1} Professor`}
-                                    className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    required
-                                    //type="number"
-                                    //name={`courses.rateCourse`}
-                                    //value={course.rateCourse}
-                                    //onChange={(e) => handleChange(e, index)}
-                                    //placeholder={`Rate Course ${index + 1} (1-5)`}
-                                    //className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    //required
-                                />
-                                
-                            </div>
-                        ))}
-                        <button type="button" onClick={addCourse} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                            Add Another Course
-                        </button>
-                    </>
-                );
-            
+        if (step < 6) {
+            setStep((prevStep) => prevStep + 1);
         }
     };
 
+    const renderSteps = () => {
+        if (step < 6) {
+            return (
+                <>
+                    {step >= 1 && (
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={userData.fullName}
+                            onChange={handleChange}
+                            placeholder="Full Name"
+                            className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                            autoFocus
+                        />
+                    )}
+                    {step >= 2 && (
+                        <input
+                            type="email"
+                            name="email"
+                            value={userData.email}
+                            onChange={handleChange}
+                            placeholder="Email ID"
+                            className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        />
+                    )}
+                    {step >= 3 && (
+                        <input
+                            type="password"
+                            name="password"
+                            value={userData.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                            className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        />
+                    )}
+                    {step >= 4 && (
+                        <input
+                            type="text"
+                            name="universityName"
+                            value={userData.universityName}
+                            onChange={handleChange}
+                            placeholder="University Name"
+                            className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        />
+                    )}
+                    {step >= 5 && (
+                        <select
+                            name="yearOfCollege"
+                            value={userData.yearOfCollege}
+                            onChange={handleChange}
+                            className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        >
+                            <option value="">Select Year of College</option>
+                            {[1, 2, 3, 4, 5, 6].map((year) => (
+                                <option key={year} value={`${year}`}>
+                                    {year}
+                                    {[1, 2, 3].includes(year) ? ['st', 'nd', 'rd'][year - 1] : 'th'} Year
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </>
+            );
+        } else if (step === 6) {
+            return (
+                <>
+                    {userData.courses.map((course, index) => (
+                        <div key={index} className="mb-4">
+                            <input
+                                type="text"
+                                name={`courses.courseName`}
+                                value={course.courseName}
+                                onChange={(e) => handleChange(e, index)}
+                                placeholder={`Course ${index + 1} Name`}
+                                className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name={`courses.courseCode`}
+                                value={course.courseCode}
+                                onChange={(e) => handleChange(e, index)}
+                                placeholder={`Course ${index + 1} Code`}
+                                className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name={`courses.professor`}
+                                value={course.professor}
+                                onChange={(e) => handleChange(e, index)}
+                                placeholder={`Course ${index + 1} Professor`}
+                                className="text-black w-full p-2 rounded border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                required
+                            />
+                        </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={addCourse}
+                        className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded"
+                    >
+                        Add Another Course
+                    </button>
+                </>
+            );
+        }
+    };
+
+
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-dark text-white">
+        <div className="min-h-screen flex items-stretch text-black">
             <Head>
                 <title>Signup | Edurate</title>
             </Head>
-            <div className="w-full max-w-lg p-8">
-                <form onSubmit={handleSubmit} className="bg-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <div className="mb-4">{renderStep()}</div>
-                    <div className="flex space-x-4 mt-4 justify-between">
-                        {step > 1 && (
-                            <button onClick={handlePreviousStep} className="bg-gray-500 hover:bg-gray-600 text-black font-bold py-2 px-4 rounded">
-                                Back
-                            </button>
-                        )}
-                        {step < 6 && (
-                            <button onClick={handleNextStep} className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                                Next
-                            </button>
-                        )}
-                        {step === 6 && (
-                            <Link href="../Review" passHref>
-                                <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
-                                    Submit
+
+            {/* Header Section */}
+            <header className="w-full bg-[#14213d] py-4 px-8 fixed top-0 flex justify-between items-center z-10">
+                <h1 className="text-xl font-bold text-white">EduRate</h1>
+                <div className="flex-grow flex justify-center">
+                    <SearchInput placeholder="What university do you go to?" defaultValue={""} />
+                </div>
+                <Link href="../Homepage" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Login</Link>
+            </header>
+
+            {/* Main content */}
+            <div className="flex flex-grow pt-16 w-full" style={{ paddingTop: '4rem', backgroundColor: '#e5e5e5' }}> {/* Adjust the padding-top as needed */}
+                {/* Signup Form Side */}
+                <div className="w-1/2 flex flex-col justify-center p-8" style={{ minHeight: 'calc(100vh - 4rem)' }}> {/* Adjust minHeight to account for header/footer */}
+                    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-white p-6 shadow-md rounded">
+                        <div className="space-y-4">{renderSteps()}</div>
+                        <div className="flex space-x-4 mt-4 justify-between">
+                            {step < 6 && (
+                                <button onClick={handleNextStep} className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">
+                                    Next
                                 </button>
-                            </Link>
-                        )}
-                    </div>
-                </form>
+                            )}
+                            {step === 6 && (
+                                <>
+                                    <button onClick={handlePreviousStep} className="bg-gray-500 hover:bg-gray-600 text-black font-bold py-2 px-4 rounded">
+                                        Back
+                                    </button>
+                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-4 rounded">
+                                        Submit
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </form>
+                </div>
+
+                {/* Animation Side */}
+                <div className="w-1/2" style={{ backgroundColor: '#e5e5e5' }}>
+                    {/* Animation Placeholder */}
+                </div>
             </div>
+
+            {/* Footer Section */}
+            <footer className="w-full bg-[#14213d] py-4 px-8 text-center text-white fixed bottom-0">
+                <p> 2024 Edurate. All rights reserved. </p>
+            </footer>
         </div>
     );
 };
