@@ -33,7 +33,7 @@ const Home = () => {
                 <h1 className="text-xl font-bold text-white">EduRate</h1>
                 <div className="flex-grow flex justify-center">
                     <SearchInput placeholder="What university do you go to?" defaultValue={""} />
-                    <UniversityList />
+                 
                 </div>
                 <Link href="" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Contact Us</Link>
             </header>
