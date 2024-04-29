@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from "react";
-import { SearchInput } from "@/app/SearchInput";
-
+import { SearchInput } from "../components/SearchInput";
 
 const Course = () => {
 

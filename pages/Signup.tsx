@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { SearchInput } from "@/app/SearchInput";
+import { SearchInput } from "../components/SearchInput";
 
 const Signup = () => {
     const [step, setStep] = useState(1);

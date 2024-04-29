@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from "react";
-import { SearchInput } from "@/app/SearchInput";
-import { data, Course } from "@/services/data";
+import { SearchInput } from "../components/SearchInput";
+// import { data, Course } from "@/services/data";
 
 const University = () => {
     

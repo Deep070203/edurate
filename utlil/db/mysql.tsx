@@ -9,3 +9,5 @@ const pool = mysql.createPool({
 })
 
 export default pool
+
+// we will get the remote connection(MySQL remote server or Amazon dynamoDB)
