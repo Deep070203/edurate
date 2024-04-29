@@ -23,7 +23,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
 
     const fetchSuggestions = async (input: string) => {
         try {
-            const response = await fetch(`/api/universities?search=${encodeURIComponent(input)}`);
+            const response = await fetch(`/api/universities/${encodeURIComponent(input)}`);
             const data = await response.json();
             setSuggestions(data.suggestions);
             setShowSuggestions(true);
