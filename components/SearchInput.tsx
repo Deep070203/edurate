@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, useEffect } from "react";
-import searchIcon from '../../styles/search.png';
+import searchIcon from '../public/images/search.png';
 import Image from 'next/image';
 
 interface iDefault {

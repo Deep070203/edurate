@@ -2,17 +2,17 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from "react";
-import { SearchInput } from "@/app/SearchInput";
-import { data, Course } from "@/services/data";
-import UniversityList from '@/components/universityList';
+import { SearchInput } from "../components/SearchInput";
+//import { data, Course } from "@/services/data";
+//import UniversityList from '@/pages/UniversityList';
 
 const Home = () => {
-    const [courseData, setCourseData] = useState<Course[]>([]);
+    //const [courseData, setCourseData] = useState<Course[]>([]);
     useEffect(() => {
-        setCourseData(data);
+        //setCourseData(data);
     }, []);
 
-    const totalUser = courseData.length;
+    //const totalUser = courseData.length;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
