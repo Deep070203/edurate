@@ -3,11 +3,35 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from "react";
 import { SearchInput } from "../components/SearchInput";
-import React from 'react';
+import { useRouter } from 'next/router';
 // import { data, Course } from "@/services/data";
 
 const University = () => {
-    
+    const router = useRouter();
+    const { id } = router.query; // Assuming you're using slug-based dynamic routing
+    const [university, setUniversity] = useState(null);
+
+    useEffect(() => {
+        if (id) {
+            const universityId = Array.isArray(id) ? parseInt(id[0]) : parseInt(id);
+            fetchUniversityData(universityId);
+        }
+    }, [id]);
+
+    const fetchUniversityData = async (id: number) => {
+        try {
+            const response = await fetch(`/api/courses/${id}`);
+            const data = await response.json();
+            console.log(data);
+            setUniversity(data); // Assuming the API returns university data in JSON format
+        } catch (error) {
+            console.error('Error fetching university data:', error);
+        }
+    };
+
+    // if (!university) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#e5e5e5]">

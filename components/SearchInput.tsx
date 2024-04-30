@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, useEffect, useRef } from "react";
 import searchIcon from '../public/images/search.png';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface iDefault {
     defaultValue: string | null,
@@ -9,10 +11,10 @@ interface iDefault {
 
 export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
     const [inputValue, setInputValue] = useState<string>(defaultValue || "");
-    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [suggestions, setSuggestions] = useState<{ id: number; name: string }[]>([]); 
     const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
-
+    const router = useRouter();
 
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
@@ -43,7 +45,7 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
             const data = await response.json();
             const filteredSuggestions = data.universities
                 .filter((university: { name: string }) => university.name.toLowerCase().startsWith(input.toLowerCase()))
-                .map((university: { name: string }) => university.name);
+                .map((university: { id: number; name: string }) => ({ id: university.id, name: university.name }));
             setSuggestions(filteredSuggestions);
             setShowSuggestions(true);
         } catch (error) {
@@ -51,14 +53,17 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
         }
     };
 
+    const handleSearch = (selectedUniversity: { id: number; name: string }) => {
+        // Redirect to the university page with the university ID as a parameter
+        router.push(`/university/${selectedUniversity.id}`);
+        setInputValue(selectedUniversity.name);
+        setShowSuggestions(false);
+    };
+
+
     // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     //     setInputValue(event.target.value);
     // };
-
-    const handleSearch = (selectedUniversity: string) => {
-        setInputValue(selectedUniversity);
-        setShowSuggestions(false);
-    };
 
     const handleInputClick = () => {
         fetchSuggestions(""); // Fetch suggestions when the search bar is clicked
@@ -88,9 +93,9 @@ export const SearchInput = ({ defaultValue, placeholder }: iDefault) => {
             </div>
             {showSuggestions && (
                 <ul className="absolute z-10 w-full bg-gray-600 shadow-md overflow-auto rounded-[12px]" style={{ top: '100%', left: '0%' }}>
-                    {suggestions.map((suggestion, index) => (
-                        <li key={suggestion} onClick={() => handleSearch(suggestion)} className="p-2 hover:bg-gray-800 cursor-pointer text-black">
-                            {suggestion}
+                    {suggestions.map((suggestion) => (
+                        <li key={suggestion.id} onClick={() => handleSearch(suggestion)} className="p-2 hover:bg-gray-800 cursor-pointer text-black">
+                            {suggestion.name}
                         </li>
                     ))}
                 </ul>
