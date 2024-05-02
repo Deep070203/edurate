@@ -69,11 +69,31 @@ const University = () => {
                 </aside>
 
                 {/* Popular Courses Section */}
-                <section className="w-3/4 p-4">
+                <section className="w-3/4 p-4 overflow-y-auto" style={{ maxHeight: '77vh' }}>
                     <div className="text-xl font-bold mb-4 text-black">
                         Best Rated University Courses
                     </div>
                     {/* Placeholder for course cards, repeat for each course */}
+                    <div className="mb-4 bg-white p-4 rounded shadow-lg">
+                        <Link href="../Course" passHref>
+                            <h3 className="text-lg font-bold text-black">Course Name 101</h3>
+                            <p className="text-lg text-black">Course Code</p>
+                            {/* Placeholder for actual course rating component */}
+                            <div className="text-right text-l text-black">
+                                4.5/5
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="mb-4 bg-white p-4 rounded shadow-lg">
+                        <Link href="../Course" passHref>
+                            <h3 className="text-lg font-bold text-black">Course Name 101</h3>
+                            <p className="text-lg text-black">Course Code</p>
+                            {/* Placeholder for actual course rating component */}
+                            <div className="text-right text-l text-black">
+                                4.5/5
+                            </div>
+                        </Link>
+                    </div>
                     <div className="mb-4 bg-white p-4 rounded shadow-lg">
                         <Link href="../Course" passHref>
                             <h3 className="text-lg font-bold text-black">Course Name 101</h3>
