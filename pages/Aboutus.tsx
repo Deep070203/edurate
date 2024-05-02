@@ -7,7 +7,7 @@ import React from 'react';
 import Image from 'next/image';
 import symbol from '../public/images/Edrater.png';
 
-const Course = () => {
+const Aboutus = () => {
 
 
     return (
@@ -20,14 +20,15 @@ const Course = () => {
             <header className="w-full bg-[#14213d] py-4 px-8 flex justify-between items-center">
                 <Image src={symbol} alt="Edrater" width={240} height={240} />
                 <div className="flex-grow flex justify-center">
-                    <SearchInput placeholder="Lookup Course Number or Name" defaultValue={""} /> {/* change this search input backend*/}
+                    <SearchInput placeholder="What university do you go to?" defaultValue={""} />
                 </div>
-                <Link href="../Homepage" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Log Out</Link>
+                <Link href="../University" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 rounded">Login</Link>
+                <Link href="../Signup" className="bg-[#fca311] hover:bg-[#fca311]/90 text-black font-bold py-2 px-4 ml-4 rounded">Sign Up</Link>
             </header>
 
             {/* Main Content */}
             <main className="flex-grow w-full flex">
-                    
+                
             </main>
 
             {/* Footer Section */}
@@ -39,4 +40,4 @@ const Course = () => {
     );
 }
 
-export default Course;
+export default Aboutus;

@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { SearchInput } from "../components/SearchInput";
 import React from 'react';
+import Image from 'next/image';
+import symbol from '../public/images/Edrater.png';
 
 const Signup = () => {
     const [step, setStep] = useState(1);
@@ -179,7 +181,7 @@ const Signup = () => {
 
             {/* Header Section */}
             <header className="w-full bg-[#14213d] py-4 px-8 fixed top-0 flex justify-between items-center z-10">
-                <h1 className="text-xl font-bold text-white">EduRate</h1>
+                <Image src={symbol} alt="Edrater" width={240} height={240} />
                 <div className="flex-grow flex justify-center">
                     <SearchInput placeholder="What university do you go to?" defaultValue={""} />
                 </div>
