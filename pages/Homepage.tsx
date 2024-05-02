@@ -28,7 +28,7 @@ const Home = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#e5e5e5]">
             <Head>
-                <title>Edurate</title>
+                <title>EDrater</title>
             </Head>
 
             {/* Header Section */}
@@ -42,7 +42,7 @@ const Home = () => {
             </header>
 
             {/* Main Content */}
-            <h1 className="text-4xl font-bold mt-12 mb-4 text-black">Welcome to Edurate!</h1> 
+            <h1 className="text-4xl font-bold mt-12 mb-4 text-black">Welcome to EDrater!</h1> 
             <div className="flex flex-grow w-full">
                 <div className="flex-[6.5] flex items-center justify-center overflow-x-auto">
                     <div className="min-w-[850px]">
@@ -96,7 +96,7 @@ const Home = () => {
 
             {/* Footer Section */}
             <footer className="w-full bg-[#14213d] py-4 px-8 text-center text-white">
-                <p> 2024 Edurate. All rights reserved. </p>
+                <p> 2024 EDrater. All rights reserved. </p>
             </footer>
             
         </div>

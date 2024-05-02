@@ -13,7 +13,7 @@ const Aboutus = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#e5e5e5]">
             <Head>
-                <title>Edurate - University</title>
+                <title>EDrater - University</title>
             </Head>
 
             {/* Header Section */}
@@ -33,7 +33,7 @@ const Aboutus = () => {
 
             {/* Footer Section */}
             <footer className="w-full bg-[#14213d] py-4 px-8 text-center text-white">
-                <p> 2024 Edurate. All rights reserved. </p>
+                <p> 2024 EDrater. All rights reserved. </p>
             </footer>
 
         </div>

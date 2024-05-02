@@ -176,7 +176,7 @@ const Signup = () => {
     return (
         <div className="min-h-screen flex items-stretch text-black">
             <Head>
-                <title>Signup | Edurate</title>
+                <title>Signup | EDrater</title>
             </Head>
 
             {/* Header Section */}
@@ -221,7 +221,7 @@ const Signup = () => {
 
             {/* Footer Section */}
             <footer className="w-full bg-[#14213d] py-4 px-8 text-center text-white fixed bottom-0">
-                <p> 2024 Edurate. All rights reserved. </p>
+                <p> 2024 EDrater. All rights reserved. </p>
             </footer>
         </div>
     );
